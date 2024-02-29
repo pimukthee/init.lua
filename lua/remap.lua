@@ -9,4 +9,6 @@ vim.keymap.set("x", "p", '"_dP')
 
 vim.keymap.set("n", "<leader>rp", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
-vim.keymap.set("n", "<leader>w", ":lua vim.diagnostic.open_float(0, { scope = \"line\" })<CR>")
+vim.keymap.set("n", "<leader>w", ':lua vim.diagnostic.open_float(0, { scope = "line" })<CR>')
+
+vim.keymap.set("n", "<Esc>", "<cmd> noh <CR>")
