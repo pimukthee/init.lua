@@ -3,6 +3,7 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "nvimtools/none-ls.nvim",
+        "nvimtools/none-ls-extras.nvim"
     },
     config = function()
         local null_ls = require("null-ls")
@@ -11,9 +12,9 @@ return {
             ensure_installed = { "stylua", "goimports", "eslint_d", "prettier" },
             handlers = {
                 stylua = function(source_name, methods)
+                    require("none-ls.diagnostics.eslint_d")
                     null_ls.register(null_ls.builtins.formatting.stylua)
                     null_ls.register(null_ls.builtins.formatting.prettier)
-                    null_ls.register(null_ls.builtins.diagnostics.eslint_d)
                 end
             }
         })
