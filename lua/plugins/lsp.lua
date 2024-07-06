@@ -14,7 +14,7 @@ return {
 
         require("mason").setup()
         require("mason-lspconfig").setup({
-            ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "tsserver" },
+            ensure_installed = { "lua_ls", "rust_analyzer", "gopls", "tsserver", "templ", "emmet_ls" },
             handlers = {
                 function(server_name)
                     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -28,6 +28,26 @@ return {
                     }
                     require("lspconfig")[server_name].setup({
                         capabilities = capabilities,
+                    })
+                end,
+                ["emmet_ls"] = function()
+                    local lspconfig = require("lspconfig")
+                    local capabilities = vim.lsp.protocol.make_client_capabilities()
+                    capabilities.textDocument.completion.completionItem.snippetSupport = true
+                    lspconfig.emmet_ls.setup({
+                        capabilities = capabilities,
+                        filetypes = {
+                            "css",
+                            "html",
+                        },
+                        init_options = {
+                            html = {
+                                options = {
+                                    -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+                                    ["bem.enabled"] = true,
+                                },
+                            },
+                        },
                     })
                 end,
             },
