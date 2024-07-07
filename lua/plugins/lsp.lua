@@ -39,6 +39,7 @@ return {
                         filetypes = {
                             "css",
                             "html",
+                            "templ",
                         },
                         init_options = {
                             html = {
